@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include <BleKeyboard.h>
+
+BleKeyboard bleKeyboard;
 
 // 4x4 membrane keypad layout:
 //   1  2  3  A
@@ -58,6 +61,9 @@ void setup() {
     Serial.println();
     Serial.println("ESP32 4x4 keypad ready.");
     Serial.println("Press a key; its character will appear below.");
+    Serial.println("Starting BLE work!");
+    bleKeyboard.begin();
+    Serial.println("BLE keyboard started. Connect to it from your computer or phone.");
 }
 
 void loop() {
@@ -77,6 +83,8 @@ void loop() {
         if (candidateKey != '\0' && candidateKey != reportedKey) {
             Serial.print("Key pressed: ");
             Serial.println(candidateKey);
+            bleKeyboard.print(candidateKey);
+            
             reportedKey = candidateKey;
         }
 
