@@ -83,7 +83,25 @@ void loop() {
         if (candidateKey != '\0' && candidateKey != reportedKey) {
             Serial.print("Key pressed: ");
             Serial.println(candidateKey);
-            bleKeyboard.print(candidateKey);
+
+            switch(candidateKey) {
+                case 'A':
+                    bleKeyboard.write(KEY_UP_ARROW);
+                    Serial.println("Sent UP_ARROW");
+                    break;
+                case 'B':
+                    bleKeyboard.write(KEY_DOWN_ARROW);
+                    Serial.println("Sent DOWN_ARROW");
+                    break;
+                case 'C':
+                    bleKeyboard.write(KEY_LEFT_ARROW);
+                    Serial.println("Sent LEFT_ARROW");
+                    break;
+                case 'D':
+                    bleKeyboard.write(KEY_RIGHT_ARROW);
+                    Serial.println("Sent RIGHT_ARROW");
+                    break;
+            }
             
             reportedKey = candidateKey;
         }
