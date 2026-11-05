@@ -101,6 +101,12 @@ void loop() {
                     bleKeyboard.write(KEY_RIGHT_ARROW);
                     Serial.println("Sent RIGHT_ARROW");
                     break;
+                default:
+                    bleKeyboard.print(candidateKey);
+                    Serial.print("Sent character: ");
+                    Serial.println(candidateKey);
+                    break;
+
             }
             
             reportedKey = candidateKey;
